@@ -25,8 +25,8 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
         sh -s -- -y --profile minimal --default-toolchain none && \
-    rustup toolchain install 1.88 --profile minimal && \
-    rustup default 1.88
+    rustup toolchain install 1.89 --profile minimal && \
+    rustup default 1.89
 
 WORKDIR /app
 
@@ -37,7 +37,7 @@ WORKDIR /app
 # only application code changes.
 COPY pyproject.toml uv.lock README.md ./
 RUN pip install --no-cache-dir uv && \
-    uv export --frozen --no-dev --extra server --no-emit-project > requirements.txt && \
+    uv export --frozen --no-dev --extra server --extra inference-google --no-emit-project > requirements.txt && \
     uv pip install --system --no-deps -r requirements.txt && \
     uv pip install --system --no-deps "maturin>=1.12.6,<2"
 
