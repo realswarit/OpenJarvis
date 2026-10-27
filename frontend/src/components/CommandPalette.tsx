@@ -578,9 +578,11 @@ export function CommandPalette() {
             <span>Models are downloaded from the Ollama registry</span>
           ) : (
             <span>API keys are stored locally and never sent to OpenJarvis servers</span>
+          
           )}
         </div>
       </div>
     </div>
   );
 }
+{CLOUD_PROVIDERS.map((provider) => {
